@@ -77,18 +77,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_HOST', 'licenses'),
-        'USER': os.getenv('POSTGRES_USER', 'licenses'),
-        'PASSWORD': os.getenv('POSTGRES_USER', 'licenses'),
-        'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
-        'PORT': int(os.getenv('POSTGRES_PORT', 5432)),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MARIADB_DATABASE', 'licenses'),
+        'USER': os.getenv('MARIADB_USER', 'licenses'),
+        'PASSWORD': os.getenv('MARIADB_PASSWORD', 'licenses'),
+        'HOST': os.getenv('MARIADB_HOST', 'mariadb'),
+        'PORT': os.getenv('MARIADB_PORT', '3306'),
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

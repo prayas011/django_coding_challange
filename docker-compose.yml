@@ -3,13 +3,14 @@ services:
     build:
       context: ./license_portal
     links:
-      - postgres
+      - mariadb
     volumes:
       - ./license_portal:/app
 
-  postgres:
-    image: 'postgres:13'
+  mariadb:
+    image: 'mariadb:latest'
     environment:
-     POSTGRES_USER: 'licenses'
-     POSTGRES_PASSWORD: 'licenses'
-     POSTGRES_DB: 'licenses'
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: 'licenses'
+      MYSQL_USER: 'licenses'
+      MYSQL_PASSWORD: 'licenses'
