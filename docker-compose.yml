@@ -2,6 +2,8 @@ services:
   license-server:
     build:
       context: ./license_portal
+    environment:  # Add this environment setting
+      - DJANGO_DB_HOST=mariadb
     links:
       - mariadb
     volumes:

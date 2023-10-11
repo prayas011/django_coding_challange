@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'licenses'
+    'licenses',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -78,13 +79,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MARIADB_DATABASE', 'licenses'),
-        'USER': os.getenv('MARIADB_USER', 'licenses'),
-        'PASSWORD': os.getenv('MARIADB_PASSWORD', 'licenses'),
-        'HOST': os.getenv('MARIADB_HOST', 'mariadb'),
-        'PORT': os.getenv('MARIADB_PORT', '3306'),
+        'NAME': 'licenses',
+        'USER': 'licenses',
+        'PASSWORD': 'licenses',
+        'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
+        'PORT': '3306',
     }
 }
+
+
 
 
 # Password validation
