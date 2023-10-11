@@ -1,9 +1,19 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from rest_framework import generics
+import license_portal
+
+from license_portal.licenses.utils import send_license_notification_email
+from .models import EmailLog  
+from .serializers import EmailLogSerializer
+
+class EmailLogList(generics.ListAPIView):
+    queryset = EmailLog.objects.all()
+    serializer_class = EmailLogSerializer
 
 @csrf_exempt
 def send_notifications(request):
-    licenses_to_notify = License.objects.get_licenses_to_notify()
+    licenses_to_notify = license_portal.objects.get_licenses_to_notify()
     for license in licenses_to_notify:
         send_license_notification_email(license)
     return JsonResponse({"message": "Notifications sent"})

@@ -6,5 +6,4 @@ from .models import License
 class SendLicenseNotificationsView(APIView):
 
     def post(self, request):
-        # Run the logic to send emails.
         return Response({"message": "Emails sent successfully!"})
